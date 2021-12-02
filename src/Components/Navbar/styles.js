@@ -1,51 +1,43 @@
-import { styled } from '@mui/material/styles';
+import { makeStyles  } from '@mui/styles';
 import Fade from '@mui/material/Fade';
+
 
 const drawerWidth = 0;
 
-export default styled((theme) => ({
+export default makeStyles((theme) => ({
   appBar: {
     boxShadow: 'none',
     borderBottom: '1px solid rgba(0, 0, 0, 0.12)',
-    [theme.breakpoints.up('sm')]: {
-      width: `calc(100% - ${drawerWidth}px)`,
-      marginLeft: drawerWidth,
-      display: 'flex',
-    },
   },
   title: {
     flexGrow: 1,
+    alignItems: 'center',
     display: 'flex',
     textDecoration: 'none',
+    lineHeight: '9px',
   },
   image: {
     marginRight: '10px',
   },
   menuButton: {
-    marginRight: theme.spacing(2),
-    [theme.breakpoints.up('sm')]: {
-      display: 'none',
-    },
+    marginRight:'20px',
   },
   grow: {
     flexGrow: 1,
   },
   search: {
     position: 'relative',
-    borderRadius: theme.shape.borderRadius,
-    backgroundColor: Fade(theme.palette.common.white, 0.15),
+    borderRadius: '10px',
+    backgroundColor: '#fff',
     '&:hover': {
-      backgroundColor: Fade(theme.palette.common.white, 0.25),
+      backgroundColor: '#fff'
     },
-    marginRight: theme.spacing(2),
+    marginRight: '20px',
     marginLeft: 0,
     width: '100%',
-    [theme.breakpoints.up('sm')]: {
-      width: 'auto',
-    },
   },
   searchIcon: {
-    padding: theme.spacing(0, 2),
+    padding: '20px',
     height: '100%',
     position: 'absolute',
     pointerEvents: 'none',
@@ -57,13 +49,10 @@ export default styled((theme) => ({
     color: 'inherit',
   },
   inputInput: {
-    padding: theme.spacing(1, 1, 1, 0),
+    padding: '20px',
     // vertical padding + font size from searchIcon
-    paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
-    transition: theme.transitions.create('width'),
+    paddingLeft: '20px',
+    transition: '1s',
     width: '100%',
-    [theme.breakpoints.up('md')]: {
-      width: '20ch',
-    },
   },
 }));

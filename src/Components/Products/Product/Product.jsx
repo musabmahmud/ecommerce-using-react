@@ -9,24 +9,23 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShareIcon from '@mui/icons-material/Share';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 
-const Product = (props) => {
-    const {id,title,image,price,rating,rate,category, description} = props.product;
+const Product = ({product}) => {
     return (
-        <Card sx={{ maxWidth: 345 }}>
+        <Card>
             <CardMedia
                 component="img"
                 height="300"
-                image={image}
-                alt={title}
+                image={product.image.url}
+                alt={product.name}
             />
             <CardContent>
                 <Typography gutterBottom variant="h5" component="div">
-                {title}
+                {product.name}
                 </Typography>
-                <Typography variant="body2" color="text.secondary">
-                    {description}
-                </Typography>
-                <Typography variant="h5" mt={2}>${price}</Typography>
+                <Typography component="span">{product.categories.name}</Typography>
+                
+                <Typography dangerouslySetInnerHTML={{ __html: product.description }} variant="body2" color="textSecondary" component="p" />
+                <Typography variant="h5" mt={2}>${product.price.raw}</Typography>
             </CardContent>
             <CardActions disableSpacing>
                 <IconButton aria-label="add to favorites">
