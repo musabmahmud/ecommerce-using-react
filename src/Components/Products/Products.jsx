@@ -5,11 +5,8 @@ import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import Product from './Product/Product.jsx';
 import useStyles from './styles';
-const Products = ({products}) => {
-    
-    
+const Products = ({products,addedToCart}) => {
     // const fakeApiUrl = 'https://fakestoreapi.com/products';
-
     console.log(products);
     const classes = useStyles();
     return (
@@ -18,7 +15,7 @@ const Products = ({products}) => {
         <Grid container justify="center" spacing={2}>
             {products.map(product => (
                 <Grid item key={product.id} xs={12} sm={12} md={4} lg={3}>
-                    <Product product={product}/>
+                    <Product product={product} addedToCart={addedToCart}/>
                 </Grid>
             ))}
         </Grid>
