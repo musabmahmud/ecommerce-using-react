@@ -24,7 +24,7 @@ const Product = ({product,addedToCart}) => {
                 </Typography>
                 <Typography variant="body2" color="textSecondary" component="p">{product.categories.name}</Typography>
                 <Typography dangerouslySetInnerHTML={{ __html: product.description }} variant="body2" color="textSecondary" component="p" />
-                <Typography variant="h5" mt={2}>${product.price.raw}</Typography>
+                <Typography variant="h5" mt={2}>{product.price.formatted_with_symbol}</Typography>
             </CardContent>
             <CardActions disableSpacing>
                 <IconButton aria-label="add to favorites">
