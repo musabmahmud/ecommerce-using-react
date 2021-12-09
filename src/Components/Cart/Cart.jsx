@@ -1,37 +1,41 @@
 import React from 'react';
-import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
-import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import useStyles from './styles';
-import { Typography } from '@mui/material';
+import { Button, Link, Typography } from '@mui/material';
 import CartItem from './CartItem/CartItem';
 const Cart = ({cart}) => {
     const classes = useStyles();
-    if (!cart.line_items) return 'Loading';
-    console.log('cartklaj',cart.line_items);
-    //if the cart is empth
-    const renderEmptyCart = () =>{
-        <>
-        <Typography variant="subtitle1">You have no items in your shopping cart</Typography>
-        </>
-    }
-    // get the cart
-    const renderCart = () =>{
-         <>
-         <Grid container justify="center" spacing={2}>
-            {cart.line_items.map(product => (
-                <Grid  xs={12} sm={12} md={4} lg={3}>
-                    <CartItem cartItem={product.line_items}/>
-                </Grid>
-            ))}
-        </Grid>
-         </>
-    }
+
+    if (!cart.line_items) return 'Loading...';
+
     return (
-        <Box sx={{ flexGrow: 1 }}>
+      <Box sx={{ flexGrow: 1 }}>
         <div className={classes.productMg} />
-        { !cart.total_unique_items.length ? renderEmptyCart() : renderCart() }
+        <Typography className={classes.title} variant="h3" gutterBottom>Your Shopping Cart</Typography>
+        
+        { !cart.line_items.length ? 
+            <Typography variant="subtitle1">You have no items in your shopping cart,
+                <Link className={classes.link} to="/">start adding some</Link>!
+            </Typography>
+            :
+            <>
+            <Grid container spacing={3}>
+                {cart.line_items.map((product) => (
+                <Grid item xs={12} sm={4} key={product.id}>
+                    <CartItem item={product}/>
+                </Grid>
+                ))}
+                <Grid item xs={12} className={classes.cardDetails}>
+                    <Typography variant="h4">Subtotal: {cart.subtotal.formatted_with_symbol}</Typography>
+                    <div>
+                    <Button style={{marginRight: '20px'}} size="large" type="button" variant="contained" color="secondary">Empty cart</Button>
+                    <Button component={Link} to="/checkout" size="large" type="button" variant="contained" color="primary">Checkout</Button>
+                    </div>
+                </Grid>
+            </Grid>
+            </>
+        }
       </Box>
     );
 };

@@ -5,7 +5,14 @@ import { set } from 'react-hook-form';
 import Commerce from '@chec/commerce.js';
 import { useEffect, useState } from 'react';
 import Cart from './Components/Cart/Cart';
-
+import {
+  BrowserRouter as Router,
+  Routes ,
+  Route,
+  Link,
+  useRouteMatch,
+  useParams
+} from "react-router-dom";
 function App() {
   const commerce = new Commerce('pk_test_366567aeef8c1286f40965ea8e5f6f2a60fe7e977fbac',true);
 
@@ -19,7 +26,7 @@ function App() {
 
     //Cart List
     const [cart, setCart] = useState({});
-    const fetchCart = async ()=> {
+    const fetchCart = async () => {
       setCart(await commerce.cart.retrieve());
     }
 
@@ -35,13 +42,17 @@ function App() {
       fetchCart();
     }, []);
 
-    console.log(cart);
   return (
-    <div className="bodyBg">
-      {/* <Navbar totalItems={cart.total_unique_items}/> */}
-      {/* <Products products={products} addedToCart={handleAddToCart}/> */}
-      <Cart cart={cart}/>
-    </div>
+    <Router>
+    {/* <div className="bodyBg"> */}
+      <Navbar totalItems={cart.total_unique_items}/>
+      
+      <Routes>
+          <Route exact path="/" element={<Products products={products} addedToCart={handleAddToCart}/>} />
+          <Route exact path="/cart" element={<Cart cart={cart}/>}/>
+      </Routes>
+      {/* </div> */}
+    </Router>
   );
 }
 

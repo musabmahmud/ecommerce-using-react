@@ -16,23 +16,27 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 
 import logo from './../../assets/img/logo.png';
 import useStyles from './styles.js';
+import { Link,useLocation } from "react-router-dom";
 
 const Navbar = ({totalItems}) => {
     const classes = useStyles();
+    
+    const location = useLocation();
     return (
         <>
             <AppBar position="fixed" className={classes.appBar} color="inherit">
                 <Toolbar>
-                    <Typography className={classes.title} variant="h6" color="inherit">
+                    <Typography component={Link} to="/" className={classes.title} variant="h6" color="inherit">
                         <img className={classes.image} src={logo} alt="Ecommerce Js" height="25px"/> Ecommerce
                     </Typography>
                     <div className={classes.grow}/>
                     <div className={classes.button}>
-                        <IconButton aria-label="show cart item" color="inherit">
+                        {location.pathname === '/cart' ? null : 
+                        (<IconButton aria-label="show cart item" component={Link} to="/cart" color="inherit">
                             <Badge badgeContent={totalItems} color="primary">
                                 <ShoppingCartIcon></ShoppingCartIcon>
                             </Badge>
-                        </IconButton>
+                        </IconButton>)}
                     </div>
                 </Toolbar>
             </AppBar>

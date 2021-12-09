@@ -1,11 +1,34 @@
-import React from 'react';
-
-const CartItem = ({cartItem}) => {
+import * as React from 'react';
+import Card from '@mui/material/Card';
+import CardActions from '@mui/material/CardActions';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
+import useStyles from './styles.js';
+const CartItem = ({item}) => {
+    const classes = useStyles();
     return (
-        <div>
-           {cartItem.name}
-           gusahslj askldjfkl
+      <Card className="cart-item">
+       <CardMedia
+        component="img"
+        height="200"
+        image={item.image.url}
+        alt={item.name}
+      />
+      <CardContent className={classes.cardContent}>
+        <Typography variant="h5">{item.name}</Typography>
+        <Typography variant="h5">{item.line_total.formatted_with_symbol}</Typography>
+      </CardContent>
+      <CardActions className={classes.cardActions}>
+        <div className={classes.buttons}>
+          <Button type="button" size="small">-</Button>
+          <Typography>&nbsp;{item.quantity}&nbsp;</Typography>
+          <Button type="button" size="small">+</Button>
         </div>
+        <Button variant="contained" type="button" style={{backgroundColor:"red"}}>Remove</Button>
+      </CardActions>
+    </Card>
     );
 };
 
