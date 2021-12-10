@@ -31,12 +31,13 @@ const Navbar = ({totalItems}) => {
                     </Typography>
                     <div className={classes.grow}/>
                     <div className={classes.button}>
-                        {location.pathname === '/cart' ? null : 
+                        {location.pathname === '/' ?
                         (<IconButton aria-label="show cart item" component={Link} to="/cart" color="inherit">
                             <Badge badgeContent={totalItems} color="primary">
                                 <ShoppingCartIcon></ShoppingCartIcon>
                             </Badge>
-                        </IconButton>)}
+                        </IconButton>)
+                        : null}
                     </div>
                 </Toolbar>
             </AppBar>

@@ -6,7 +6,7 @@ import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import useStyles from './styles.js';
-const CartItem = ({item}) => {
+const CartItem = ({item,handleUpdateToCart,handleRemoveFromCart}) => {
     const classes = useStyles();
     return (
       <Card className="cart-item">
@@ -22,11 +22,11 @@ const CartItem = ({item}) => {
       </CardContent>
       <CardActions className={classes.cardActions}>
         <div className={classes.buttons}>
-          <Button type="button" size="small">-</Button>
+          <Button type="button" size="small" onClick={() => handleUpdateToCart(item.id, item.quantity - 1)}>-</Button>
           <Typography>&nbsp;{item.quantity}&nbsp;</Typography>
-          <Button type="button" size="small">+</Button>
+          <Button type="button" size="small" onClick={() => handleUpdateToCart(item.id, item.quantity + 1)}>+</Button>
         </div>
-        <Button variant="contained" type="button" style={{backgroundColor:"red"}}>Remove</Button>
+        <Button variant="contained" type="button" color="error" onClick={handleRemoveFromCart}>Remove</Button>
       </CardActions>
     </Card>
     );

@@ -13,6 +13,7 @@ import {
   useRouteMatch,
   useParams
 } from "react-router-dom";
+import Checkout from './Components/CheckoutForm/Checkout/Checkout';
 function App() {
   const commerce = new Commerce('pk_test_366567aeef8c1286f40965ea8e5f6f2a60fe7e977fbac',true);
 
@@ -36,6 +37,21 @@ function App() {
       const items = await commerce.cart.add(productId, quantity);
       setCart(items);
     }
+    const handleUpdateToCart = async (productId, quantity) => {
+      const items = await commerce.cart.update(productId, {quantity});
+      setCart(items);
+    }
+
+    
+    const handleRemoveFromCart = async (productId, quantity) => {
+      const items = await commerce.cart.remove(productId, quantity);
+      setCart(items);
+    }
+    
+    const handleEmptyCart = async () => {
+      const items = await commerce.cart.empty();
+      setCart(items);
+    }
 
     useEffect(() => {
       fetchProducts();
@@ -44,14 +60,13 @@ function App() {
 
   return (
     <Router>
-    {/* <div className="bodyBg"> */}
       <Navbar totalItems={cart.total_unique_items}/>
-      
+      <div style={{marginTop:'80px'}} />
       <Routes>
           <Route exact path="/" element={<Products products={products} addedToCart={handleAddToCart}/>} />
-          <Route exact path="/cart" element={<Cart cart={cart}/>}/>
+          <Route exact path="/cart" element={<Cart cart={cart} handleUpdateToCart={handleUpdateToCart}handleRemoveFromCart={handleRemoveFromCart} handleEmptyCart={handleEmptyCart}/>}/>
+          <Route exact path="/checkout" element={<Checkout />} />
       </Routes>
-      {/* </div> */}
     </Router>
   );
 }
