@@ -10,6 +10,7 @@ import ShareIcon from '@mui/icons-material/Share';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 
 const Product = ({product,addedToCart}) => {
+    console.log(product.id);
     return (
         <Card>
             <CardMedia
@@ -18,6 +19,7 @@ const Product = ({product,addedToCart}) => {
                 image={product.image.url}
                 alt={product.name}
             />
+            
             <CardContent>
                 <Typography gutterBottom variant="h5" component="div">
                 {product.name}
