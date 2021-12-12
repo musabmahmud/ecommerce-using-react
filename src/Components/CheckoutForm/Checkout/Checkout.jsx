@@ -15,8 +15,7 @@ import { commerce } from '../../../Lib/Commerce';
 const steps = ['Shipping Address', 'Payment Details'];
 
 const Checkout = ({cart}) => {
-
-    console.log(commerce);
+    
     const [checkoutToken, setCheckoutToken] = useState(null);
 
     useEffect(() => {

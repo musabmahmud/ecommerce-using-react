@@ -10,7 +10,6 @@ import ShareIcon from '@mui/icons-material/Share';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 
 const Product = ({product,addedToCart}) => {
-    console.log(product.id);
     return (
         <Card>
             <CardMedia
